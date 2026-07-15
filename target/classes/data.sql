@@ -19,7 +19,7 @@ MERGE INTO setores (id, nome, descricao) KEY(id) VALUES (5, 'Manutencao', 'Ofici
 -- ============================================================
 
 MERGE INTO usuarios (id, login, senha, nome, tipo, setor_id) KEY(id)
-VALUES (1, 'lucaslopes', '{noop}123', 'Lucas Lopes', 'ADMIN', 5);
+VALUES (1, 'guilherme', '{noop}123', 'Guilherme Brunno', 'ADMIN', 5);
 
 MERGE INTO usuarios (id, login, senha, nome, tipo, setor_id) KEY(id)
 VALUES (2, 'joao.operador', '{noop}123', 'Joao Pedro', 'OPERADOR', 1);
