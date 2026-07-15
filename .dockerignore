@@ -1,0 +1,9 @@
+target/
+.git/
+.idea/
+*.iml
+data/
+uploads/
+*.md
+run.log
+run.err

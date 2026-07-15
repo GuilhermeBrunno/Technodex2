@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Ranking de Tecnicos')"></head>
+<body>
+<div class="app">
+    <div th:replace="fragments/layout :: sidebar('ranking')"></div>
+
+    <div class="main">
+        <div th:replace="fragments/layout :: topbar('Ranking de Tecnicos')"></div>
+
+        <div class="content">
+            <div th:if="${sucesso}" class="alert-sucesso" th:text="${sucesso}"></div>
+
+            <div class="page-header">
+                <h1>Tecnicos com menor tempo médio de reparo (MTTR)</h1>
+                <a th:href="@{/dashboard}" class="btn-secundario">Voltar ao dashboard</a>
+            </div>
+            <p class="ranking-obs" th:if="${ranking != null and !ranking.isEmpty()}">
+                Considerando apenas técnicos com no mínimo 10 reparos concluídos.
+            </p>
+            <div class="alert-sucesso" th:if="${ranking == null or ranking.isEmpty()}">
+                Nenhum técnico atingiu o mínimo de 10 reparos concluídos ainda.
+            </div>
+            <div class="bento-card">
+            <div class="podio-container" id="podio-container">
+                <h2 class="podio-titulo" id="podio-titulo">🏆 Ranking</h2>
+
+                <div class="podio" id="podio">
+                  <!-- 2º lugar -->
+                  <div class="posicao lugar-2" id="posicao-2" th:if="${ranking != null and ranking.size() > 1}">
+                    <div class="avatar" id="avatar-2">JP</div>
+                    <div class="nome" id="nome-2"><h2><span th:text="${ranking[1].nome}">Tecnico</span></h2></div>
+                    <div class="pontos" id="pontos-2" th:text="${#numbers.formatDecimal(ranking[1].tempoMedioSegundos / 60.0, 1, 1)} + ' min · ' + ${ranking[1].total} + ' reparos'">875 pts</div>
+                    <div class="degrau" id="degrau-2">2º</div>
+                  </div>
+
+                  <!-- 1º lugar -->
+                  <div class="posicao lugar-1" id="posicao-1" th:if="${ranking != null and ranking.size() > 0}">
+                    <div class="avatar" id="avatar-1">MS</div>
+                    <div class="nome" id="nome-1"><h2><span th:text="${ranking[0].nome}">Tecnico</span></h2></div>
+                    <div class="pontos" id="pontos-1" th:text="${#numbers.formatDecimal(ranking[0].tempoMedioSegundos / 60.0, 1, 1)} + ' min · ' + ${ranking[0].total} + ' reparos'">980 pts</div>
+                    <div class="degrau" id="degrau-1">1º</div>
+                  </div>
+
+                  <!-- 3º lugar -->
+                  <div class="posicao lugar-3" id="posicao-3" th:if="${ranking != null and ranking.size() > 2}">
+                    <div class="avatar" id="avatar-3">AC</div>
+                    <div class="nome" id="nome-3"><h2><span th:text="${ranking[2].nome}">Tecnico</span></h2></div>
+                    <div class="pontos" id="pontos-3" th:text="${#numbers.formatDecimal(ranking[2].tempoMedioSegundos / 60.0, 1, 1)} + ' min · ' + ${ranking[2].total} + ' reparos'">740 pts</div>
+                    <div class="degrau" id="degrau-3">3º</div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="lista-restante" id="lista-restante">
+                  <div class="item-lista" id="item-4" th:if="${ranking != null and ranking.size() > 3}">
+                    <div class="posicao-num">4º</div>
+                    <div class="item-nome"><h2><span th:text="${ranking[3].nome}">Tecnico</span></h2></div>
+                    <div class="item-pontos" th:text="${#numbers.formatDecimal(ranking[3].tempoMedioSegundos / 60.0, 1, 1)} + ' min · ' + ${ranking[3].total} + ' reparos'">690 pts</div>
+                  </div>
+                  <div class="item-lista" id="item-5" th:if="${ranking != null and ranking.size() > 4}">
+                    <div class="posicao-num">5º</div>
+                    <div class="item-nome"><h2><span th:text="${ranking[4].nome}">Tecnico</span></h2></div>
+                    <div class="item-pontos" th:text="${#numbers.formatDecimal(ranking[4].tempoMedioSegundos / 60.0, 1, 1)} + ' min · ' + ${ranking[4].total} + ' reparos'">610 pts</div>
+                  </div>
+                  <div class="item-lista" id="item-6" th:if="${ranking != null and ranking.size() > 5}">
+                    <div class="posicao-num">6º</div>
+                    <div class="item-nome"><h2><span th:text="${ranking[5].nome}">Tecnico</span></h2></div>
+                    <div class="item-pontos" th:text="${#numbers.formatDecimal(ranking[5].tempoMedioSegundos / 60.0, 1, 1)} + ' min · ' + ${ranking[5].total} + ' reparos'">540 pts</div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
